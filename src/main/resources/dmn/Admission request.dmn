@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_1EBE5D64-0179-4B92-B2EC-3823DBA78737" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_FEA4A707-4A36-413A-98AC-F631B41CA5BC" name="Ex 7-1" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_1EBE5D64-0179-4B92-B2EC-3823DBA78737">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_BB6C0A5A-06BA-4A8A-A379-6DC36E8B9706" name="tAdminssionProbability" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_5D5C710E-2910-4053-AEA3-E573AB48E81D">
+      <dmn:text>"High", "Medium", "Low"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_19906A6E-178E-4576-8722-5FD44565B946" name="tClassRank" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_4E9E2CEB-1929-4F6F-9270-874B16A18485">
+      <dmn:text>"Top10pct", "TopThird", "BelowTopThird"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_E41DE81A-7274-4EBB-BCAF-B5877EB1FFFF" name="tArtAthleticsCommunity" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_28E1FB67-1984-4CE1-8D63-57A120011CA5">
+      <dmn:text>"Outstanding", "Participated", "Did not participate"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:decision id="_63088B2D-2A53-43EF-BA3F-EE8C228E7216" name="Admission Probability">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6E8DB579-3429-4E48-A4E8-4DC88974D67E" name="Admission Probability" typeRef="tAdminssionProbability"/>
+    <dmn:informationRequirement id="_FED93CAF-8BBA-4442-819C-EEC00232297D">
+      <dmn:requiredInput href="#_BC354E16-75D7-4145-924C-6A42B3C78876"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_4AFB8FA2-C500-4875-9173-C1FAE60735BE">
+      <dmn:requiredInput href="#_26AF4744-7972-4BDB-AD4C-0D93A0EB92F1"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_FAF412A3-DB1E-43D5-8D89-544488780926">
+      <dmn:requiredInput href="#_1C43E031-31CD-439D-9A19-9D082503731A"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_1D78173F-7FDD-4653-8381-99823D00167D" hitPolicy="PRIORITY" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_1FC48362-89FC-49ED-8CAE-F90419FBA074">
+        <dmn:inputExpression id="_0B40B3C6-3E0D-4AC5-90F1-B0EB7D0EC124" typeRef="tClassRank">
+          <dmn:text>Class rank</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_397BD920-24C4-4136-B03A-08340E5DD441">
+        <dmn:inputExpression id="_6F9321D3-1532-486D-BDDE-054D3717582A" typeRef="tArtAthleticsCommunity">
+          <dmn:text>Arts and Athletics</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_37650850-1FCB-4C20-B3C2-12D345223CE8">
+        <dmn:inputExpression id="_56C91D4F-CBFE-4258-BC31-D82F9F2CA62B" typeRef="tArtAthleticsCommunity">
+          <dmn:text>Community service</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_C03C20A1-ADD6-4B74-9B05-2764E8BF7668">
+        <dmn:outputValues id="_FF4F399A-83C1-4CD7-8A64-803C10E59502">
+          <dmn:text>"High","Medium","Low"</dmn:text>
+        </dmn:outputValues>
+      </dmn:output>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_CFB92107-13EF-4F6E-A062-9694080198D3">
+        <dmn:inputEntry id="_AB614CF0-638D-49E7-BE8A-22148DFC2216">
+          <dmn:text>"Top10pct"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_F2CFC9ED-D244-4786-BEAE-1D30F48F44FC">
+          <dmn:text>"Outstanding","Participated"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A587A974-0704-494F-970C-9E10B7628726">
+          <dmn:text>"Outstanding","Participated"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_11DF3E64-B0D4-44BC-B8C9-4DC65BC69081">
+          <dmn:text>"High"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_F576D422-5C31-49D0-ABBE-52FD10F706D9">
+        <dmn:inputEntry id="_B9BCDC13-2D1A-4063-B54D-B10AC0152475">
+          <dmn:text>"TopThird"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_6B4306E3-67FA-41C8-9261-8F72EC07D3F3">
+          <dmn:text>"Outstanding"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_E5F81A0D-9590-4C4C-BDE6-5C528611F30B">
+          <dmn:text>"Outstanding"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_6D3E608C-AEE5-429E-846A-9D46F2594150">
+          <dmn:text>"High"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_4969AE17-EC7C-44F3-AE01-6D4F352A3E3C">
+        <dmn:inputEntry id="_7564CAD2-E7DA-4CE2-8A2F-883048F3D77B">
+          <dmn:text>"TopThird"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_10984B5F-1E93-4243-A94E-E96C673A0EE0">
+          <dmn:text>"Outstanding"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5C3E6E33-C9F6-40C3-A6BC-907335D884B1">
+          <dmn:text>"Participated"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_4435D995-0236-4ECB-8793-F0034ADD9ABA">
+          <dmn:text>"Medium"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_72C10392-8EF7-4163-A540-02899A0D83A7">
+        <dmn:inputEntry id="_B0B04E3F-0E98-413E-8A8E-5CB93A5618F1">
+          <dmn:text>"TopThird"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4D83AA06-3C25-4176-833D-C4E964D74524">
+          <dmn:text>"Participated"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A7C6D2DD-7055-4286-9CFC-15814A2AE0CC">
+          <dmn:text>"Outstanding"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C94F2420-C620-4592-913C-4B5E99752508">
+          <dmn:text>"Medium"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_82CC67F5-60AF-4F91-B2B8-6B66B56970A9">
+        <dmn:inputEntry id="_8CE999C7-9CA0-4E3F-934D-01ACB48DC892">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_3E0744B0-EBFC-48BB-9F12-54C116343264">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_763A55A2-CC65-4BCC-9204-9F4F81772FE7">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_6BC10969-03CC-4398-A1D9-AFB74CADBA44">
+          <dmn:text>"Low"</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:inputData id="_BC354E16-75D7-4145-924C-6A42B3C78876" name="Class rank">
+    <dmn:extensionElements/>
+    <dmn:variable id="_14964A8A-E2CC-49FD-AD2F-DF279D4407C2" name="Class rank" typeRef="tClassRank"/>
+  </dmn:inputData>
+  <dmn:inputData id="_1C43E031-31CD-439D-9A19-9D082503731A" name="Arts and Athletics">
+    <dmn:extensionElements/>
+    <dmn:variable id="_B1153E6F-6163-4F88-B57E-62A36EE7D7FA" name="Arts and Athletics" typeRef="tArtAthleticsCommunity"/>
+  </dmn:inputData>
+  <dmn:inputData id="_26AF4744-7972-4BDB-AD4C-0D93A0EB92F1" name="Community service">
+    <dmn:extensionElements/>
+    <dmn:variable id="_10F8F41D-BA70-40AF-B238-46C0442CB850" name="Community service" typeRef="tArtAthleticsCommunity"/>
+  </dmn:inputData>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_8B4827DE-D5D8-4F4F-B8E8-ABDF70D72232" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_1D78173F-7FDD-4653-8381-99823D00167D">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>311</kie:width>
+            <kie:width>303</kie:width>
+            <kie:width>368</kie:width>
+            <kie:width>646</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_63088B2D-2A53-43EF-BA3F-EE8C228E7216" dmnElementRef="_63088B2D-2A53-43EF-BA3F-EE8C228E7216" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="200" y="94" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_BC354E16-75D7-4145-924C-6A42B3C78876" dmnElementRef="_BC354E16-75D7-4145-924C-6A42B3C78876" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="108" y="224" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_1C43E031-31CD-439D-9A19-9D082503731A" dmnElementRef="_1C43E031-31CD-439D-9A19-9D082503731A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="327" y="224" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_26AF4744-7972-4BDB-AD4C-0D93A0EB92F1" dmnElementRef="_26AF4744-7972-4BDB-AD4C-0D93A0EB92F1" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="222" y="302" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_FED93CAF-8BBA-4442-819C-EEC00232297D-AUTO-TARGET" dmnElementRef="_FED93CAF-8BBA-4442-819C-EEC00232297D">
+        <di:waypoint x="158" y="249"/>
+        <di:waypoint x="250" y="144"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_4AFB8FA2-C500-4875-9173-C1FAE60735BE-AUTO-TARGET" dmnElementRef="_4AFB8FA2-C500-4875-9173-C1FAE60735BE">
+        <di:waypoint x="272" y="327"/>
+        <di:waypoint x="250" y="144"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_FAF412A3-DB1E-43D5-8D89-544488780926-AUTO-TARGET" dmnElementRef="_FAF412A3-DB1E-43D5-8D89-544488780926">
+        <di:waypoint x="377" y="249"/>
+        <di:waypoint x="250" y="144"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
